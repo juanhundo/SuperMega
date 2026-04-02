@@ -58,7 +58,7 @@ class Observer():
 
     def write_logs(self, working_dir: str):
         # Our log output
-        with open(f"{working_dir}log-supermega.log", "w") as f:
+        with open(f"{working_dir}log-supermega.log", "w", encoding="utf-8") as f:
             for line in observer.get_logs():
                 try:
                     f.write(line + "\n")
@@ -66,14 +66,14 @@ class Observer():
                     logger.warning("Error: {}".format(e))
 
         # Stdout of executed commands
-        with open(f"{working_dir}log-cmdoutput.log", "w") as f:
+        with open(f"{working_dir}log-cmdoutput.log", "w", encoding="utf-8") as f:
             for line in observer.get_cmd_output():
                 f.write(line)
 
         # Write all files
         idx = 0
         for name, data in observer.files:
-            with open(f"{working_dir}log-{idx}-{name}", "w") as f:
+            with open(f"{working_dir}log-{idx}-{name}", "w", encoding="utf-8") as f:
                 f.write(data)
             idx += 1
 
